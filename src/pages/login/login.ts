@@ -45,6 +45,22 @@ export class LoginPage {
       if (data && data.email && data.uid) {
         // 지출 입력 페이지로 이동.
         this.navCtrl.setRoot(SpendPage);
+
+        // 로그인 성공 메세지 출력.
+        this.afAuth.authState.subscribe(data => {
+          if (data && data.email && data.uid) {
+            this.toast.create({
+              message: `Welcome to APP_NAME, ${data.email}`,
+              duration: 3000
+            }).present();
+          } else {
+            this.toast.create({
+              message: `Could not find authentication details.`,
+              duration: 3000
+            }).present();
+          }
+
+        });
       }
     });
   }
