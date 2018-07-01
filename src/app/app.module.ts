@@ -5,9 +5,16 @@ import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 // angularfire2
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireAuthModule } from 'angularfire2/auth';
-import { environment } from '../environment'
 import { AuthService } from './auth/auth.service';
+import { AngularFireDatabaseModule } from 'angularfire2/database';
 
+// Service
+import { SpendService } from '../service/spend.service';
+
+// environment
+import { environment } from '../environment';
+
+// Pages
 import { MyApp } from './app.component';
 import { ListPage } from '../pages/list/list';
 import { SpendPage } from '../pages/spend/spend';
@@ -28,6 +35,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     IonicModule.forRoot(MyApp),
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireAuthModule,
+    AngularFireDatabaseModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -40,6 +48,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     StatusBar,
     SplashScreen,
     AuthService,
+    SpendService,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })
