@@ -1,0 +1,43 @@
+<ion-header>
+  <ion-navbar color="danger">
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title> 지출 입력
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-list>
+    <ion-item>
+      <ion-label> 분류 </ion-label>
+      <ion-select [(ngModel)]="spend.spendType">
+        <ion-option value="{{const.pocketMoney}}"> 용돈 </ion-option>
+        <ion-option value="{{const.livingCost}}"> 생활비 </ion-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>메모</ion-label>
+      <ion-input type="text" [(ngModel)]="spend.memo" text-left></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>금액</ion-label>
+      <ion-input type="number" [(ngModel)]="spend.payment" text-right></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>날짜</ion-label>
+      <ion-datetime displayFormat="YYYY MM DD" [(ngModel)]="spend.spendDate"></ion-datetime>
+    </ion-item>
+  </ion-list>
+
+  <div padding>
+    <button ion-button color="danger" block round
+            (click)="add(spend)"
+            [disabled]="!spend.memo || !spend.payment"
+    > 저장 </button>
+  </div>
+</ion-content>
